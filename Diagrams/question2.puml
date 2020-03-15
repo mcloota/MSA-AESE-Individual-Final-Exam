@@ -1,0 +1,103 @@
+@startuml
+
+user - device
+
+class mobile {
+    model()
+    pixels()
+}
+class other {
+    model()
+    pixels()
+}
+class pc {
+    model()
+    pixels()
+}
+
+mobile ..|> device
+other ..|> device
+pc..|> device
+
+class user {
+    gender[]
+    age[]
+    hobbies[]
+    themeSelection[]
+    id[]
+}
+class device {
+    algorithm()
+    getScreenSize()
+}
+device - store
+class store {
+    screenSize[]
+    themeSelectAlgorithm()
+    populate()
+} 
+store -- user
+store --- iWarehouse
+
+iWarehouse <|.. warehouse
+
+warehouse <|-- concreteWarehouse
+
+iConcreteWarehouse <|.. concreteWarehouse
+
+iWarehouse <|- iConcreteWarehouse
+
+interface iWarehouse
+interface iConcreteWarehouse
+
+interface iWarehouse {
+    save()
+    update()
+    getAll()
+    getById()
+    insert()
+    delete()
+    id[]
+}
+note left of iWarehouse #yellow
+    Repository
+    Pattern
+end note
+note right of theme #aqua
+    Composite
+    Pattern
+end note
+note top of device #Orange
+    Strategy
+    Pattern
+end note
+note top of other #LightGray
+    Specification
+    Pattern
+end note
+
+class warehouse {
+    surfProducts[]
+    skateProducts[]
+    balletProducts[]
+}
+
+(user, store) .. dataGather
+
+class dataGather {
+    whoareyou()
+
+}
+store - theme
+
+theme <|-- surf
+
+theme <|-- skate
+
+theme <|-- ballet
+
+
+
+
+
+@enduml
