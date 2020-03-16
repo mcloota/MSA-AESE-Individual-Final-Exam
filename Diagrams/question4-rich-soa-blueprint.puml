@@ -1,0 +1,43 @@
+@startuml
+
+skinparam PackageStyle rectangle
+
+package Rich-<<infrastructure>>-Service {
+    policy -- dataConnector1
+    encryption -- dataConnector2
+    logging -- dataConnector3
+    etc -- dataConnectorN
+}
+
+class router {
+
+}
+
+class messenger {
+
+}
+
+dataConnector1 -- router
+dataConnector2 -- router
+dataConnectorN -- router
+dataConnector3 -- router
+
+package Rich-<<Application>>-Services {
+    class dataConnector5 {
+
+    }
+    class dataConnector4 {
+
+    }
+    dataConnector4 -- service1
+    dataConnector5 -- service2
+}
+
+messenger -- dataConnector4
+messenger -- dataConnector5
+
+router -- messenger
+
+
+
+@enduml
